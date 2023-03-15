@@ -29,6 +29,6 @@ public class Collidable : MonoBehaviour
     }
     protected virtual void OnCollide(Collider2D coll)
     {
-        UnityEngine.Debug.Log(coll.name);
+        UnityEngine.Debug.Log("Collidable");
     }
 }

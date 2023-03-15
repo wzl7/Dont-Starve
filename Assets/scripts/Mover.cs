@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Mover : Fighter
 {
+    private Vector3 originalsize;
     protected BoxCollider2D boxCollider;
 
     protected Vector3 moveDelta;
@@ -15,6 +16,7 @@ public abstract class Mover : Fighter
 
     protected virtual void Start()
     {
+        originalsize = transform.localScale;
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -23,9 +25,9 @@ public abstract class Mover : Fighter
         moveDelta =new Vector3(inpuy.x*xSpeed,inpuy.y*ySpeed,0);
 
         if (moveDelta.x > 0)
-            transform.localScale = Vector3.one;
-        else if (moveDelta.y > 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = originalsize;
+        else if (moveDelta.x < 0)
+            transform.localScale = new Vector3(originalsize.x*-1, originalsize.y, originalsize.z);
 
         // moveDelta += pushDirection;
 

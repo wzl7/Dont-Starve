@@ -6,42 +6,47 @@ using UnityEngine;
 
 public class Tool : Collidable
 {
-    public int damagePoint = 1;
+    public int[] damagePoint = {1,10,100};
     public float pushForce = 2.0f;
-    public int toolkind;
+    public int toolkind=0;
     private SpriteRenderer spriteRenderer;
 
+
+    private Animator anim;
     private float cooldown = 0.5f;
     private float lastSwing;
     protected override void Start()
     {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(Time.time-lastSwing>cooldown)
+            if (Time.time - lastSwing > cooldown)
             {
                 lastSwing = Time.time;
                 Swing();
             }
         }
+        GameManager.instance.Tryswitchtool();
     }
     protected override void OnCollide(Collider2D coll)
     {
-        if (coll.tag=="Fighter")
+        if (coll.tag == "Fighter") //coll.tag == "Fighter"
         {
             if(coll.name!="player")
             {
-              UnityEngine.Debug.Log(coll.name);
+                UnityEngine.Debug.Log("Tool");
+
             }
             Damage dmg = new Damage()
             {
-            damageAmount=damagePoint,
+                damageAmount = damagePoint[toolkind],
             origin = transform.position,
             pushForce = pushForce
             };
@@ -49,11 +54,14 @@ public class Tool : Collidable
         }
        
     }
-    
+     public void swichTool(int num)
+    {
+        spriteRenderer.sprite = GameManager.instance.toolSprites[num];
+    }
 
 
     private void Swing()
     {
-        UnityEngine.Debug.Log("swing");
+        anim.SetTrigger("Swing");
     }
 }

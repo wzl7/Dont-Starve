@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -10,11 +13,17 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
     public List<Sprite> playerSprites;
-    public List<Sprite> weaponSprites;
+    public List<Sprite> toolSprites;
     public List<int> health;
 
     public Player player;
     public FloatingTextManager floatingTextManager;
+    public Tool tool;
+    public RectTransform hitpointBar;
+    public Animator deathMenuAnim;
+    public RectTransform sanpointBar;
+    public RectTransform satietyBar;
+
 
     public int grassnum;
     // public int health;
@@ -23,6 +32,42 @@ public class GameManager : MonoBehaviour
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+    }
+    public  void OnHitpointChange()
+    {
+        float ratio = (float)player.hitpoint / player.maxHitpoint;
+        hitpointBar.localScale=new Vector3(1, ratio, 1);
+    }
+
+    public void Respawn()
+    {
+        deathMenuAnim.SetTrigger("Hide");
+        player.Respawn();
+        UnityEngine.Debug.Log("Load");
+
+        SceneManager.LoadScene("main");
+
+
+    }
+
+    public void Tryswitchtool()
+    {
+        if (Input.GetKey("1"))//切换条件
+        {
+            tool.toolkind = 0; //切换结果
+            UnityEngine.Debug.Log("1");
+
+        }
+        else if (Input.GetKey("2"))//切换条件
+        {
+            tool.toolkind = 1;//切换结果
+        }
+        else if (Input.GetKey("3"))//切换条件
+        {
+            tool.toolkind = 2;//切换结果
+        }
+        tool.swichTool(tool.toolkind);
+
     }
 
 

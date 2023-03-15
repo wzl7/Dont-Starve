@@ -16,7 +16,7 @@ public class grass : Collectable
             GetComponent<SpriteRenderer>().sprite = empty1;
             UnityEngine.Debug.Log("Load");
 
-            //    GameManager.instance.ShowText(grassnum+"flower", 20, Color.yellow,transform.position, Vector3.up * 30, 2.0f);
+                GameManager.instance.ShowText(grassnum+"flower", 20, Color.yellow,transform.position, Vector3.up * 30, 2.0f);
         }
     }
 }
