@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class Tool : Collidable
 {
-    public int[] damagePoint = {1,10,100};
+    public int[] damagePoint = {1,1,3};
     public float pushForce = 2.0f;
     public int toolkind=0;
     private SpriteRenderer spriteRenderer;
 
 
     private Animator anim;
-    private float cooldown = 0.5f;
+    private float cooldown = 0.3f;
     private float lastSwing;
     protected override void Start()
     {
@@ -37,22 +37,21 @@ public class Tool : Collidable
     }
     protected override void OnCollide(Collider2D coll)
     {
+        
         if (coll.tag == "Fighter") //coll.tag == "Fighter"
         {
-            if(coll.name!="player")
+            if (coll.name == "player")
             {
-                UnityEngine.Debug.Log("Tool");
-
+                Damage dmg = new Damage()
+                {
+                    damageAmount = damagePoint[toolkind],
+                    origin = transform.position,
+                    pushForce = pushForce
+                };
+                coll.SendMessage("ReceiveDamage", dmg);
             }
-            Damage dmg = new Damage()
-            {
-                damageAmount = damagePoint[toolkind],
-            origin = transform.position,
-            pushForce = pushForce
-            };
-            coll.SendMessage("ReceiveDamage", dmg);
         }
-       
+
     }
      public void swichTool(int num)
     {

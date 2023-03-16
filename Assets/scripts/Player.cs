@@ -24,6 +24,7 @@ public class Player : Mover
 
         }
     }
+
     protected override void Death()
     {
         islive = false;

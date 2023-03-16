@@ -24,8 +24,12 @@ public class GameManager : MonoBehaviour
     public RectTransform sanpointBar;
     public RectTransform satietyBar;
 
-
-    public int grassnum;
+    //±³°ü    
+    public int grassnum=0;
+    public int woodnum = 0;
+    public int stonenum = 0;
+    public int flowernum = 0;
+            
     // public int health;
     public FloatingText floatingText;
 
@@ -35,8 +39,12 @@ public class GameManager : MonoBehaviour
     }
     public  void OnHitpointChange()
     {
-        float ratio = (float)player.hitpoint / player.maxHitpoint;
-        hitpointBar.localScale=new Vector3(1, ratio, 1);
+        float ratio0 = (float)player.hitpoint / player.maxHitpoint;
+        hitpointBar.localScale=new Vector3(1, ratio0, 1);
+        float ratio1 = (float)player.sanpoint / player.maxsanpoint;
+        sanpointBar.localScale = new Vector3(1, ratio1, 1);
+        float ratio2 = (float)player.satiety / player.maxsatiety;
+        satietyBar.localScale = new Vector3(1, ratio2, 1);
     }
 
     public void Respawn()
@@ -49,6 +57,18 @@ public class GameManager : MonoBehaviour
 
 
     }
+    public void Time2san()
+    {
+        player.sanpoint -= 1;
+        player.satiety -= 1;   
+    }
+    //public int toolkind()
+    //{
+    //    if (tool.toolkind ==0)
+    //    {
+    //        return 1;
+    //    }
+    //}
 
     public void Tryswitchtool()
     {

@@ -6,13 +6,13 @@ public class Enemy : Mover
 {
     public int xp = 1;
 
-    public float triggerLength = 10;
-    public float chaseLength = 50;
+    public float triggerLength = 1;
+    public float chaseLength = 1;
     private bool chasing;
     private bool collidingWithPlayer;
     private Transform playerTransform;
     private Vector3 startingPosition;
-
+    private Transform target;   //设置追踪目标的位置
     private BoxCollider2D hitbox;
     private Collider2D[] hits = new Collider2D[10];
     public ContactFilter2D filter;
@@ -37,12 +37,14 @@ public class Enemy : Mover
                 {
                     UpdateMotor((playerTransform.position - transform.position).normalized);
                 }
+
             }
             else
             {
                 UpdateMotor(startingPosition - transform.position);
 
             }
+
 
         }
         else
