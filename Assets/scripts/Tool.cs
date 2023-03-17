@@ -7,7 +7,6 @@ using UnityEngine;
 public class Tool : Collidable
 {
     public int[] damagePoint = {1,1,3};
-    public float pushForce = 2.0f;
     public int toolkind=0;
     private SpriteRenderer spriteRenderer;
 
@@ -37,16 +36,15 @@ public class Tool : Collidable
     }
     protected override void OnCollide(Collider2D coll)
     {
-        
+
         if (coll.tag == "Fighter") //coll.tag == "Fighter"
         {
-            if (coll.name == "player")
+            if (coll.name == "enemy_0")
             {
                 Damage dmg = new Damage()
                 {
                     damageAmount = damagePoint[toolkind],
                     origin = transform.position,
-                    pushForce = pushForce
                 };
                 coll.SendMessage("ReceiveDamage", dmg);
             }

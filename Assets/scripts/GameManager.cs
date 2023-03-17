@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         player.Respawn();
         UnityEngine.Debug.Log("Load");
 
-        SceneManager.LoadScene("main");
+        //EditorSceneManager.LoadScene("main");
 
 
     }
@@ -62,20 +62,15 @@ public class GameManager : MonoBehaviour
         player.sanpoint -= 1;
         player.satiety -= 1;   
     }
-    //public int toolkind()
-    //{
-    //    if (tool.toolkind ==0)
-    //    {
-    //        return 1;
-    //    }
-    //}
+
+
 
     public void Tryswitchtool()
     {
         if (Input.GetKey("1"))//切换条件
         {
+
             tool.toolkind = 0; //切换结果
-            UnityEngine.Debug.Log("1");
 
         }
         else if (Input.GetKey("2"))//切换条件
@@ -86,17 +81,34 @@ public class GameManager : MonoBehaviour
         {
             tool.toolkind = 2;//切换结果
         }
+        else if (Input.GetKey("6"))//切换条件
+        {
+            player.hitpoint=player.maxHitpoint;
+            player.sanpoint += 1;
+            player.satiety += 1;
+            OnHitpointChange();//切换结果
+        }
+        else if (Input.GetKey("5"))//切换条件
+        {
+            player.maxHitpoint += 5;
+            OnHitpointChange();//切换结果
+        }
+        else if (Input.GetKey("4"))//切换条件
+        {
+            player.maxsatiety += 5;
+            OnHitpointChange();//切换结果
+        }
         tool.swichTool(tool.toolkind);
 
     }
 
 
-    public void SaveState()
-    {
-        UnityEngine.Debug.Log("Save");
-    }
-    public void LoadState()
-    {
-        UnityEngine.Debug.Log("Load");
-    }
+    //public void SaveState()
+    //{
+    //    UnityEngine.Debug.Log("Save");
+    //}
+    //public void LoadState()
+    //{
+    //    UnityEngine.Debug.Log("Load");
+    //}
 }

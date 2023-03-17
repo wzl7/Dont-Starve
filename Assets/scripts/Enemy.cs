@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Enemy : Mover
 {
-    public int xp = 1;
-
     public float triggerLength = 1;
-    public float chaseLength = 1;
+    public float chaseLength = 300;
     private bool chasing;
     private bool collidingWithPlayer;
     private Transform playerTransform;
@@ -42,7 +40,6 @@ public class Enemy : Mover
             else
             {
                 UpdateMotor(startingPosition - transform.position);
-
             }
 
 

@@ -14,7 +14,7 @@ public class grass : Collectable
         {
             collected = true;
             GetComponent<SpriteRenderer>().sprite = empty1;
-            UnityEngine.Debug.Log("Load");
+           // UnityEngine.Debug.Log("Load");
             if(grasskind == 0 ) { GameManager.instance.grassnum += 1; }
             if (grasskind == 1) { GameManager.instance.flowernum += 1; }
             if (grasskind == 2) { GameManager.instance.stonenum += 1; }

@@ -29,20 +29,17 @@ public class TimeTest : MonoBehaviour
 
     void Start()
     {
-        perSec = 24f / period;//计算游戏里一秒对应现实里多少小时
+        perSec = 24f / period;
 
-        perHour = period / 24f;//计算现实里一小时对应游戏里多少秒
+        perHour = period / 24f;
 
-        timer = startTime * (period / 24f);//注意startTime以小时为单位
-
+        timer = startTime * (period / 24f);
         InitializeTimePoint();
     }
 
     void Update()
     {
         TimeFlow();
- 
-       // SendTimeEvent();
     }
 
     private void TimeFlow()//计时并循环
@@ -68,16 +65,6 @@ public class TimeTest : MonoBehaviour
             currentPos = 0;//重置i
         }
     }
-
-    //private void SendTimeEvent()
-    //{
-    //    if (currentPos < timePoints.Count && timeInGame > timePoints[currentPos])
-    //    {
-    //        timeEvents[currentPos].Invoke(perHour);
-
-    //        currentPos++;
-    //    }
-    //}
 
     private void InitializeTimePoint()//要添加元素就在这里加
     {

@@ -12,6 +12,10 @@ public class Cameramoter : MonoBehaviour
     public float boundY = 0.05f;
     private void LateUpdate()
     {
+        void Start()
+        {
+
+        }
         Vector3 delta = Vector3.zero;
         float deltaX = lookAt.position.x - transform.position.x;
         if(deltaX>boundX||deltaX<-boundX)
@@ -41,6 +45,6 @@ public class Cameramoter : MonoBehaviour
 
             }
         }
-        transform.position += new Vector3(delta.x, delta.y, 0);
+        transform.position += new Vector3(delta.x, delta.y/*-1*/, 0);
     }
 }

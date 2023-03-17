@@ -9,10 +9,11 @@ using UnityEngine;
 
 public class Player : Mover
 {
-    public int sanpoint = 10;
-    public int maxsanpoint = 10;
-    public int satiety = 10;
-    public int maxsatiety = 10;
+    public float sanpoint = 10;
+    public float maxsanpoint = 10;
+    public float satiety = 10;
+    public float maxsatiety = 10;
+   // private Vector3 offest;
     bool islive=true;
     private void FixedUpdate()
     {
@@ -24,11 +25,11 @@ public class Player : Mover
 
         }
     }
-
     protected override void Death()
     {
         islive = false;
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
+    //    EditorSceneManager.LoadScene("main");
     }
     public void Respawn()
     {
